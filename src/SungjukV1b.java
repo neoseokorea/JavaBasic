@@ -38,8 +38,8 @@ public class SungjukV1b {
 		avg = total / 3;
 		grd = '우';
 
-		// 출력
-		System.out.println("------- 결과 -------");
+		// 출력 형태 #1
+		System.out.println("------- 결과 #1 ----");
 		System.out.println("이름: " + name);
 		System.out.println("국어: " + kor);
 		System.out.println("영어: " + eng);
@@ -47,5 +47,10 @@ public class SungjukV1b {
 		System.out.println("총합: " + total);
 		System.out.println("평균: " + avg);
 		System.out.println("학점: " + grd);
+
+		// 출력 형태 #2
+		System.out.println("------- 결과 #2----");
+		System.out.printf("이름: %s, 국어: %d, 영어: %d, 수학: %d, 총점: %d, 평균: %f, 학점: %s \n", name, kor, eng, math, total, avg,
+				grd);
 	}
 }
