@@ -52,5 +52,9 @@ public class SungjukV1b {
 		System.out.println("------- 결과 #2----");
 		System.out.printf("이름: %s, 국어: %d, 영어: %d, 수학: %d, 총점: %d, 평균: %f, 학점: %s \n", name, kor, eng, math, total, avg,
 				grd);
+		// 출력 형태 #3
+		System.out.println("------- 결과 #3----");
+		System.out.printf("이름: %s, 국어: %d, 영어: %d, 수학: %d, 총점: %d, 평균: %.1f, 학점: %s \n", name, kor, eng, math, total,
+				avg, grd);
 	}
 }
