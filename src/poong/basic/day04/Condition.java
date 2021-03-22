@@ -71,5 +71,7 @@ public class Condition {
 		System.out.println("세금은 "+ tax + "만원입니다.");
 		System.out.printf("세금은 %.1f만원입니다. \n", tax);
 		//System.out.printf("세금은 %1111.1f만원입니다. \n", tax);
+		String fmt = "\"세금은 %.1f만원입니다. \\n\", tax";
+		System.out.printf(fmt, tax);
 	} //main
 }

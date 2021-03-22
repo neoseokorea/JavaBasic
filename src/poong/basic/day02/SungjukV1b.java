@@ -1,19 +1,18 @@
-package poong.basic.day03;
+package poong.basic.day02;
 import java.util.Scanner;
 
 /**
  * 
  * @author poong
  * @category javabasic
- * @version 1.2 자바프로그램 기초
+ * @version 1.0 자바프로그램 기초
  *
  *          자바 기초 프로그램 - 성적처리 프로그램 입력 : 이름, 국어, 영어, 수학 처리 : 총점, 평균, 학점 출력 : 이름,
  *          국어, 영어, 수학, 총점, 평균, 학점
  * 
- *          이름과 성적데이터를 키보드로 직접 입력받아 처리 
- *          총점, 평균, 학점 처리하고 결과 출력
+ *          이름과 성적데이터를 키보드로 직접 입력받아 처리 처리 결과 출력시 printf 메서드를 이용ㅇ *
  */
-public class SungjukV1c {
+public class SungjukV1b {
 	public static void main(String[] args) {
 		// 변수 선언
 		String name; // 이름
@@ -27,12 +26,7 @@ public class SungjukV1c {
 		// 처리
 		Scanner sc = new Scanner(System.in);
 		// 키보드를 이용해서 성적데이터를 입력받기 위해 Scanner 클래스를 초기화함.
-//		nextLine()과 next()메소드의 차이는 
-//		nextLine()메소드는 Enter를 치기 전까지 쓴 문자열을 모두 리턴한다는 것이고 
-//		next() 메소드는 스페이스 즉 공백 전까지 입력받은 문자열을 리턴한다는 것이다.
-		// https://deftkang.tistory.com/55
 
-		출처: https://deftkang.tistory.com/55 [deftkang의 IT 블로그]
 		System.out.println("이름은?");
 		name = sc.next(); // 키보드로 문자데이터를 입력받아 name 변수에 대입.
 		System.out.println("국어점수는?");
@@ -41,14 +35,10 @@ public class SungjukV1c {
 		eng = sc.nextInt();
 		System.out.println("수학점수는?");
 		math = sc.nextInt();
-		
-		//총점, 평균, 학점 처리
 		total = kor + eng + math;
-		avg = (double) total / 3;
-		grd = 	(avg >= 90) ? '수' : 
-			  	(avg >= 80) ? '우' :
-				(avg >= 70) ? '미' :
-				(avg >= 60) ? '양' : '가';
+		avg = total / 3;
+		grd = '우';
+
 		// 출력 형태 #1
 		System.out.println("------- 결과 #1 ----");
 		System.out.println("이름: " + name);
