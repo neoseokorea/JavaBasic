@@ -1,42 +1,38 @@
-package poong.basic.day09;
+package poong.basic.day10;
 
 public class StarCraft2 {
 
     public static void main(String[] args) {
 
-//        SCV s = new SCV("SCV", 45, 5, 2.81, 50, 0);
-        /*SCV 유닛을 만들 때마다 초기값을 지정하는 것은 다소 번거로움.
-        즉, 동일한 속성을 가지는 가진 유닛을 만들 때마다 매개변수를 통해 객체를 만드는 것은 비효율적.
-        이런 경우, 생성자 내에서 초기값을 지정하는 것이 나음.
-         */
-//        SCV s = new SCV("SCV", 45, 5, 2.81, 50, 0);
+        //인터페이스 기반으로 바꿈
 
-        SCV s1 = new SCV();
+
+        SCV2 s1 = new SCV2();
         System.out.println("건설로봇의 체력" + s1.hp);
-        s1.attack();
-        s1.move();
-        s1.specialAbility();
+        s1.attack2();
+        s1.move2();
+        s1.specialAbility2();
         System.out.println();
 
-        Marine s2 = new Marine();
+        Marine2 s2 = new Marine2();
         System.out.println("해병대의 체력" + s2.hp);
-        s2.attack();
-        s2.move();
-        s2.specialAbility();
+        s2.attack2();
+        s2.move2();
+        s2.specialAbility2();
         System.out.println();
 
-        Firebat s3 = new Firebat();
+        Firebat2 s3 = new Firebat2();
         System.out.println("화염방사병의 체력" + s3.hp);
-        s3.attack();
-        s3.move();
-        s3.specialAbility();
+        s3.attack2();
+        s3.move2();
+        s3.specialAbility2();
         System.out.println();
-
 
     }
 
-
 }//public class StarCraft {
+
+
 
 abstract class Unit2 {
     protected String name;
@@ -58,22 +54,36 @@ abstract class Unit2 {
         this.gas = gas;
     } //public Unit(
 
-    abstract public void attack();
+//    abstract public void attack2();
+//    abstract public void move2();
+//    abstract public void specialAbility2();
 
-    abstract public void move();
-
-    abstract public void specialAbility();
-
-} //class Unit
+} //abstract class Unit2
 
 
-class SCV extends Unit2 {
+
+/*
+    추상클래스에서 정의했던 추상메서드를
+    독립적인 코드들로 분리함 -> 인터페이스
+ */
+
+interface Unit2Action {
+
+    void attack2();
+    void move2(); // abstract public은 생략 가능
+    void specialAbility2();
+
+}//interface Unit2Action
+
+
+
+class SCV2 extends Unit2 implements Unit2Action {
 
     final String fmtattack = "융합절단기를 이용해서 대상에 %d의 피해를 주고 있습니다.\n";
     final String fmtmove = "지정한 위치로 %.2f 속도로 이동 중입니다.\n";
     final String fmtspaty = "대상을 수리하는 중입니다.\n";
 
-    public SCV() {
+    public SCV2() {
         name = "건설로봇";
         hp = 45;
         power = 5;
@@ -87,35 +97,34 @@ class SCV extends Unit2 {
 //    }
 
     @Override
-    public void attack() {
+    public void attack2() {
         /*
-            추상메서드를 이용해서 부모클래스에 정의된 attack메서드를 유닛에 맞게 재정의함.
+            추상메서드를 이용해서 부모클래스에 정의된 attack2메서드를 유닛에 맞게 재정의함.
          */
         System.out.printf(fmtattack, power);
     }
 
     @Override
-    public void move() {
+    public void move2() {
         System.out.printf(fmtmove, mvspd);
 
     }
 
     @Override
-    public void specialAbility() {
+    public void specialAbility2() {
         System.out.printf(fmtspaty);
 
     }
-}
+}//class SCV2 extends Unit2 implements Unit2Action
 
-
-class Marine extends Unit2 {
+class Marine2 extends Unit2 implements Unit2Action {
 
     final String fmtattack = "가우스소총를 이용해서 대상에 %d의 피해를 주고 있습니다.\n";
     final String fmtmove = "지정한 위치로 %.2f 속도로 이동 중입니다.\n";
     final String fmtspaty = "전투자극제를 사용해서 이동속도 50%% 증가, 공격속도 33%% 증가합니다.\n";
 
 
-    public Marine() {
+    public Marine2() {
         name = "해병대";
         hp  = 50;
         power = 30;
@@ -126,33 +135,32 @@ class Marine extends Unit2 {
 
 
     @Override
-    public void attack() {
+    public void attack2() {
         System.out.printf(fmtattack, power);
 
     }
 
     @Override
-    public void move() {
+    public void move2() {
         System.out.printf(fmtmove, mvspd);
 
     }
 
     @Override
-    public void specialAbility() {
+    public void specialAbility2() {
         System.out.printf(fmtspaty);
 
     }
-}
+}//class Marine2 extends Unit2 implements Unit2Action
 
-
-class Firebat extends Unit2 {
+class Firebat2 extends Unit2 implements Unit2Action {
 
     final String fmtattack = "화염방사기를 이용해서 대상에 %d의 피해를 주고 있습니다.\n";
     final String fmtmove = "지정한 위치로 %.2f 속도로 이동 중입니다.\n";
     final String fmtspaty = "전투자극제를 사용해서 이동속도 50%% 증가, 공격속도 33%% 증가합니다.\n";
 
 
-    public Firebat() {
+    public Firebat2() {
         name = "화염방사병";
         hp  = 50;
         power = 8 * 2;
@@ -163,20 +171,20 @@ class Firebat extends Unit2 {
 
 
     @Override
-    public void attack() {
+    public void attack2() {
         System.out.printf(fmtattack, power);
 
     }
 
     @Override
-    public void move() {
+    public void move2() {
         System.out.printf(fmtmove, mvspd);
 
     }
 
     @Override
-    public void specialAbility() {
+    public void specialAbility2() {
         System.out.printf(fmtspaty);
 
     }
-}
+}//class Firebat2 extends Unit2 implements Unit2Action
