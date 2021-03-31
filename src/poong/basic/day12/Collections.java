@@ -93,7 +93,7 @@ public class Collections {
         //즉, member 객체의 멤버변수와 비교해야 됨.
         for (Member m : members) {
             if (m.userid.equals("def456")) {
-                System.out.println("데이터 찾음!");
+                System.out.println("데이터 찾았음!");
                 break;
             }
         }
