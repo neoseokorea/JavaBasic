@@ -44,6 +44,6 @@ public class SungJukV5cMain {
         }
     }
 
-    private static class SungJukVService {
-    }
+//    private static class SungJukVService {
+//    }
 }

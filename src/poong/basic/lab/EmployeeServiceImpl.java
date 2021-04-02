@@ -95,6 +95,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 
+
     //사원 기본정보(사번, 이름, 성)등을 리스트 형태로 출력함.
     @Override
     public void showEmployee() {
@@ -127,10 +128,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         String empno = sc.next();
 
         EmployeeVO emp = null;
-        for (EmployeeVO e : empdata) {
-            //찾는 데이터가 동적배열에 존재한다면
+        for (EmployeeVO e : empdata) { //<======================================
+            //찾는 데이터가 동적배열 empdata에 존재한다면
             //emp 변수에 그것을 저장하고 반복문을 종료한다.
-            if (e.getEmpro().equals(empno) ) {
+            if (e.getEmpro().equals(empno) ) {  //<======================================
                 emp = e; //주소가 넘어옴.
                 break;
             }
@@ -170,26 +171,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void makeExtInfo(EmployeeVO emp) {
-        Random rnd = new Random();
+        Random rnd = new Random(); //<======================================
 
-        int key = rnd.nextInt(JOBID.length);
-        String jobid = JOBID[key];
+        int key = rnd.nextInt(JOBID.length); //<======================================
+        String jobid = JOBID[key]; //랜덤발생된 키를 이용해서 직책을 임의결정해준다.
 
         //급여를 난수로 발생시킴
-        int sal = rnd.nextInt(MAXSAL) + MINSAL;
-        int mgrid = rnd.nextInt(MAXMGRID) + 100;
-        int deptid = (rnd.nextInt(MAXDEPT) % 100) * 10;
+        int sal = rnd.nextInt(MAXSAL) + MINSAL; //급여
+        int mgrid = rnd.nextInt(MAXMGRID) + 100; //상사 번호
+        int deptid = (rnd.nextInt(MAXDEPT) % 100) * 10; //부서 번호
 
         DecimalFormat df = new DecimalFormat("#.#");
         double comm = Double.parseDouble(
-                df.format( rnd.nextDouble() / 2));
-
-//        값을 확인하기 위한 테스트 출력문
-//        System.out.println(jobid);
-//        System.out.println(sal);
-//        System.out.println(mgrid);
-//        System.out.println(deptid);
-//        System.out.println(comm);
+                            df.format(
+                                    rnd.nextDouble() / 2
+                                        )
+                        );
 
         emp.setJobid(jobid);
         emp.setSal(sal);

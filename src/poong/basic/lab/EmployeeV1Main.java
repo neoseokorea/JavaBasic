@@ -9,7 +9,7 @@ public class EmployeeV1Main {
         //사원정보를 입력받아 동적배열에 저장하고 조회 및 수정/삭제하는 프로그램
         Scanner sc = new Scanner(System.in);
 
-        EmployeeService empsrv = EmployeeServiceImpl. getInstance();
+        EmployeeService empsrv = EmployeeServiceImpl.getInstance();
 
         String menu = "";
 
