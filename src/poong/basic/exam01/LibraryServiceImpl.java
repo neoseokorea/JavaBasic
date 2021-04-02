@@ -92,7 +92,7 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public void showLibrary() {
 
-        String fmt = "%d %s %s %s %s %s \n";
+        String fmt = "Index: %d 도서관명 : %s 시도 : %s  구군 :%s 도서관유형 : %s 휴관일 : %s \n";
 
         int pos = 0;
         for (LibraryVO lib : libdata) {
@@ -103,23 +103,18 @@ public class LibraryServiceImpl implements LibraryService {
                     lib.getLbtype(),
                     lib.getClsday()
             );
+            pos++;
         }//for
-        pos++;
+
 
     }
 
     @Override
     public void showOneLibrary() {
 
-        String fmt = "%s %s %s %s %s %s %s %s %f %f \n";
-
-//        String fmt =
-//                "도서관명 : %s, " +
-//                        "시도 : %s, " +
-//                        "구군 : %s, " +
-//                        "도서관유형 : %s, " +
-//                        "휴관일 : %s \n";
-
+        String fmt = "도서관명 : %s 시도 :%s 구군 :%s 도서관유형 :%s\n" +
+                "휴관일 :%s 주소 :%s 전화번호 :%s 홈페이지 :%s\n" +
+                "위도 :%f 경도 :%f \n";
 
         Scanner sc = new Scanner(System.in);
         System.out.print("조회할 도서관 이름는? : ");
