@@ -100,6 +100,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void showEmployee() {
         String fmt = "%s %s %s %s %s %s \n";
+
         for(EmployeeVO emp :empdata ) {
             System.out.printf(fmt,
                     emp.getEmpro(),
