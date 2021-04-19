@@ -1,6 +1,9 @@
 package poong.basic.sungjuk;
 
-public class SungJukVO {
+import java.io.Serializable;
+
+//직렬화를 지원하기위해서 Serializable을 구현해서 정의
+public class SungJukVO implements Serializable {
     protected String name;
     protected int kor;
     protected int eng;
