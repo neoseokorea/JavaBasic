@@ -1,7 +1,6 @@
 package poong.basic.day19;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class BoardServiceImpl implements BoardService {
@@ -30,10 +29,12 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void newBoard() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("아이디 제목 본문순으로 입력하세요:");
-        String userid = sc.next();
-        String title = sc.next();
-        String contents = sc.next();
+        System.out.print("아이디 : ");
+        String userid = sc.nextLine();
+        System.out.print("제목 : ");
+        String title = sc.nextLine();
+        System.out.print("본문 : ");
+        String contents = sc.nextLine();
 
         BoardVO bvo = new BoardVO(
                 null, title, userid, null,
@@ -75,7 +76,7 @@ public class BoardServiceImpl implements BoardService {
     public void readOneBoard() {
         String fmt = "%s %s %s %s %s %s \n %s ";
         Scanner sc = new Scanner(System.in);
-        System.out.println("조회할 게시물 번호를 입력하세요 : ");
+        System.out.print("조회할 게시물 번호를 입력하세요 : ");
         int bdno = sc.nextInt();
 
         BoardVO bvo = bdao.selectOneBoard(bdno);
@@ -87,19 +88,45 @@ public class BoardServiceImpl implements BoardService {
 
         System.out.println("이 게시물을 추천하실래요? (y/n)");
         String thumbup = sc.next();
-        if (thumbup.toLowerCase().equals("y"))
+        if (thumbup.equalsIgnoreCase("y"))
+//       = if (thumbup.toLowerCase().equals("y"))
             bdao.thumbupBoard(bdno);    //본문글 추천하기
 
     }
 
     @Override
     public void modifyBoard() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("수정할 게시글 번호는 : ");
+        String bdno = sc.nextLine();
+        System.out.print("수정할 제목은 : ");
+        String title = sc.nextLine();
+        System.out.println("수정할 본문글은? ");
+        String contents = sc.nextLine();
+
+        BoardVO bvo = new BoardVO(
+                            bdno, title,
+                            null, null, null, null,
+                            contents);
+
+        int cnt = bdao.updateBoard(bvo);
+        if (cnt>0) System.out.println("수정되었습니다.");
+
 
     }
 
     @Override
     public void removeBoard() {
+        Scanner sc = new Scanner(System.in);
 
+        System.out.print("삭제할 게시글 번호는? ");
+        int bdno = sc.nextInt();
+
+        bdao.deleteBoard(bdno);
+
+        int cnt = bdao.deleteBoard(bdno);
+        if (cnt>0) System.out.println("삭제 완료.");
     }
 
 }//public class BoardServiceImpl implements BoardService {

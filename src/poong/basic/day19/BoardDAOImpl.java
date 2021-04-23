@@ -8,6 +8,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
+
 public class BoardDAOImpl implements BoardDAO {
 
     private static BoardDAO bdao = null;
@@ -15,23 +19,30 @@ public class BoardDAOImpl implements BoardDAO {
 
     private String insertSQL =
             "INSERT into board (title, userid, contents) " +
-                    "values (?, ?, ?) ";
+            "values (?, ?, ?) ";
 
     private String selectSQL =
             "SELECT bdno, title, userid, " +
-                    " mid(regdate, 1, 10), views, thumbup " +
-                    " FROM board order by bdno desc ";
+            " mid(regdate, 1, 10), views, thumbup " +
+            " FROM board order by bdno desc ";
 
     private String selectOneSQL =
             " select * from board where bdno = ? ";
 
     private String viewSQL =
             " update board set views = views + 1 " +
-                    " where bdno = ? ";
+            " where bdno = ? ";
 
     private String thumbSQL =
             " update board set thumbup = thumbup + 1 " +
-                    " where bdno = ? ";
+            " where bdno = ? ";
+
+    private String updateSQL =
+            " update board set title = ? , contents = ? " +
+            " where bdno = ? ";
+
+    private String deleteSQL =
+            " delete from board where bdno = ? ";
 
 
     public BoardDAOImpl() {
@@ -42,6 +53,10 @@ public class BoardDAOImpl implements BoardDAO {
         if (bdao == null) bdao = new BoardDAOImpl();
         return bdao;
     }
+
+
+
+
 
     @Override
     public int insertBoard(BoardVO bvo) {
@@ -66,6 +81,10 @@ public class BoardDAOImpl implements BoardDAO {
 
         return cnt;
     }
+
+
+
+
 
     @Override
     public List<BoardVO> selectBoard() {
@@ -94,6 +113,10 @@ public class BoardDAOImpl implements BoardDAO {
         }
         return bdlist;
     }
+
+
+
+
 
     @Override
     public BoardVO selectOneBoard(int bdno) {
@@ -137,15 +160,57 @@ public class BoardDAOImpl implements BoardDAO {
     }
 
 
+
+
+
     @Override
     public int updateBoard(BoardVO bvo) {
-        return 0;
+        int cnt = 0;
+
+        try (
+                Connection conn = jdbc.openConn();
+                PreparedStatement pstmt = conn.prepareStatement(updateSQL);
+                ) {
+                pstmt.setString(1, bvo.getTitle());
+                pstmt.setString(2, bvo.getContents());
+                pstmt.setString(3, bvo.getBdno());
+
+                cnt = pstmt.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return cnt;
     }
+
+
+
+
 
     @Override
     public int deleteBoard(int bdno) {
-        return 0;
+        int cnt = 0 ;
+
+        try (
+        Connection conn = jdbc.openConn();
+        PreparedStatement pstmt = conn.prepareStatement(deleteSQL);
+
+        ) {
+
+        pstmt.setInt(1, bdno);
+        cnt = pstmt.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return cnt;
     }
+
+
+
+
 
     public void thumbupBoard(int bdno) {
         try (
@@ -159,6 +224,9 @@ public class BoardDAOImpl implements BoardDAO {
             ex.printStackTrace();
         }
     }
+
+
+
 
 
 }

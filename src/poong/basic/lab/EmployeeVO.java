@@ -1,7 +1,25 @@
 package poong.basic.lab;
 
+
+
 public class EmployeeVO {
-    protected String empro;
+
+//    create table employeeLab (
+//            empno       int         auto_increment,
+//            fname       varchar(20) not null,
+//            lname       varchar(20) not null,
+//            email       varchar(30) not null,
+//            phone       varchar(20) not null,
+//            hdate       varchar(10) not null,
+//            jobid       varchar(10) not null,
+//            sal         int          default 0,
+//            comm        double       default 0,
+//            mgird       varchar(10) not null,
+//            deptid      varchar(10) not null,
+//            primary key (empno)
+//    );
+
+    protected int empno;
     protected String fname;
     protected String lname;
     protected String email;
@@ -16,9 +34,9 @@ public class EmployeeVO {
     public EmployeeVO() {
     }
 
-    public EmployeeVO(String empro, String fname, String lname, String email, String phone, String hdate) {
+    public EmployeeVO(int empno, String fname, String lname, String email, String phone, String hdate) {
 
-        this.empro = empro;
+        this.empno = empno;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -26,12 +44,12 @@ public class EmployeeVO {
         this.hdate = hdate;
     }
 
-    public String getEmpro() {
-        return empro;
+    public int getEmpno() {
+        return empno;
     }
 
-    public void setEmpro(String empro) {
-        this.empro = empro;
+    public void setEmpno(int empno) {
+        this.empno = empno;
     }
 
     public String getFname() {
@@ -121,7 +139,7 @@ public class EmployeeVO {
                 "jobid:%s, sal:%s, comm:%s, " +
                 "mgrid:%s, deptid:%s} \n";
 
-        String result = String.format(fmt, empro, fname, lname, email, phone, hdate,
+        String result = String.format(fmt, empno, fname, lname, email, phone, hdate,
         jobid, sal, comm,mgird, deptid);
 
         return result;

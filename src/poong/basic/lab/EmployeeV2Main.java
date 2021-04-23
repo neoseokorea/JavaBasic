@@ -2,11 +2,10 @@ package poong.basic.lab;
 
 import java.util.Scanner;
 
-public class EmployeeV1Main {
+public class EmployeeV2Main {
 
     public static void main(String[] args) {
 
-        //사원정보를 입력받아 동적배열에 저장하고 조회 및 수정/삭제하는 프로그램
         Scanner sc = new Scanner(System.in);
 
         EmployeeService empsrv = EmployeeServiceImpl.getInstance();

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeService2Impl implements EmployeeService {
 
     //멤버변수 선언
     List<EmployeeVO> empdata = new ArrayList<>();
@@ -22,11 +22,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     //싱글톤 블럭 시작
     private static EmployeeService empsrv = null;
-    private EmployeeServiceImpl() {
+    private EmployeeService2Impl() {
     }
 
     public static EmployeeService getInstance() {
-        if (empsrv == null) empsrv = new EmployeeServiceImpl();
+        if (empsrv == null) empsrv = new EmployeeService2Impl();
         return empsrv;
     }
 
@@ -76,11 +76,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
             EmployeeVO emp = new EmployeeVO(
                     empno, fname, lname, email, phone, hdate);
-            //입력받은 사원 데이터를 객체화함.
+            //입력받은 성적 데이터를 객체화함.
 
 
-            empsrv.makeExtInfo(emp);
             //사원 추가 정보를 생성해서 사원 정보로 저장.
+            empsrv.makeExtInfo(emp);
 
             empdata.add(emp);
             //처리된 성적데이터를 동적배열에 저장.
@@ -132,7 +132,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         for (EmployeeVO e : empdata) { //<======================================
             //찾는 데이터가 동적배열 empdata에 존재한다면
             //emp 변수에 그것을 저장하고 반복문을 종료한다.
-            if (e.getEmpno() == empno ) {  //<======================================
+            if (e.getEmpno() == empno)  {  //<======================================
                 emp = e; //주소가 넘어옴.
                 break;
             }

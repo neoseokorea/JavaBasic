@@ -70,19 +70,12 @@ public class SerializeSungJuk {
         int tot = sjvo.getKor() + sjvo.getEng() + sjvo.getMat();
         double avg = (double) tot / 3;
 
-        String fmt = "%s, %d, %d, %d, %d, %.1f\n";
-        System.out.printf(fmt,
-                            sjvo.getName(),
-                            sjvo.getKor(),
-                            sjvo.getEng(),
-                            tot, avg);
-
-
-
-
-
-
-
+//        String fmt = "%s, %d, %d, %d, %d, %.1f\n";
+//        System.out.printf(fmt,
+//                            sjvo.getName(),
+//                            sjvo.getKor(),
+//                            sjvo.getEng(),
+//                            tot, avg);
 
     }//main
 }
